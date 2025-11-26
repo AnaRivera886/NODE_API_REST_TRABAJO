@@ -1,15 +1,15 @@
 import express from "express";
 import tasksRoutes from "./routes/tasks.js";
+import authRoutes from "./routes/auth.js";
 
 const app = express();
 
-// Middlewares
 app.use(express.json());
 
-// Rutas
-app.use("/api", tasksRoutes);
+app.use("/tasks", tasksRoutes);
+app.use("/auth", authRoutes);
 
-// Servidor
-app.listen(3000, () => { 
-    console.log("Servidor corriendo en http://localhost:3000");
-});
+app.listen(3000, () => console.log("Servidor corriendo en http://localhost:3000"));
+
+
+

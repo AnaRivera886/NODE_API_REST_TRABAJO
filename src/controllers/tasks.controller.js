@@ -2,13 +2,13 @@
 import { prisma } from '../prismaClient.js';
 
 export const getAllTasks = async (req, res) => {
-  try {
-    const tasks = await prisma.tasks.findMany();
-    res.json(tasks);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
+    try {
+        const tasks = await prisma.tasks.findMany();
+        res.json(tasks);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 };
 
 // POST: crear tarea
