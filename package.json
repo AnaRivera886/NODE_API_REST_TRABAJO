@@ -1,0 +1,25 @@
+{
+  "name": "node_api_rest_trabajo",
+  "version": "1.0.0",
+  "description": "Primer commit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnaRivera886/NODE_API_REST_TRABAJO.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AnaRivera886/NODE_API_REST_TRABAJO/issues"
+  },
+  "homepage": "https://github.com/AnaRivera886/NODE_API_REST_TRABAJO#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
+  }
+}
