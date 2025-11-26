@@ -10,6 +10,3 @@ app.use("/tasks", tasksRoutes);
 app.use("/auth", authRoutes);
 
 app.listen(3000, () => console.log("Servidor corriendo en http://localhost:3000"));
-
-
-

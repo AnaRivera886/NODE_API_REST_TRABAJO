@@ -20,3 +20,11 @@ Consider a scenario where a frontend application running on `https://example.com
 
 ### Example Scenario
 Imagine a web application that requires users to log in before accessing certain features. Upon successful authentication, the server generates a JWT containing the user's identity and permissions. This token is then sent back to the client, typically stored in local storage or cookies. For subsequent requests, the client includes the JWT in the Authorization header. The server validates the token's signature and extracts the claims to determine the user's permissions and grant or deny access accordingly. This allows for stateless authentication and authorization across multiple services or microservices.
+# Security Concepts Explanation
+
+## How We Implemented JWT in This Project
+
+In this project, we implemented JWT for authentication and authorization purposes. Here's how we did it:
+
+1. **Installation**: We installed the `jsonwebtoken` package using npm:
+```bash
