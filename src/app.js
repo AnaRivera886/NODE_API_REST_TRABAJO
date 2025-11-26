@@ -1,25 +1,15 @@
 import express from "express";
-import dotenv from "dotenv";
-
-dotenv.config();
+import tasksRoutes from "./routes/tasks.js";
 
 const app = express();
+
+// Middlewares
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.send("API running");
-});
+// Rutas
+app.use("/api", tasksRoutes);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-const { PrismaClient } = require('@prisma/client');
-
-const prisma = new PrismaClient();
-
-// Utiliza prisma para interactuar con la base de datos
-
-// Cierra la conexión cuando tu aplicación se cierre
-process.on('SIGINT', async () => {
-await prisma.$disconnect();
-process.exit(0);
+// Servidor
+app.listen(3000, () => { 
+    console.log("Servidor corriendo en http://localhost:3000");
 });

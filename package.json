@@ -2,9 +2,11 @@
   "name": "node_api_rest_trabajo",
   "version": "1.0.0",
   "description": "Primer commit",
-  "main": "index.js",
+  "main": "src/app.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch src/app.js"
   },
   "repository": {
     "type": "git",
@@ -13,15 +15,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/AnaRivera886/NODE_API_REST_TRABAJO/issues"
   },
   "homepage": "https://github.com/AnaRivera886/NODE_API_REST_TRABAJO#readme",
   "dependencies": {
-    "@prisma/client": "^7.0.1",
     "dotenv": "^17.2.3",
-    "express": "^5.1.0",
-    "prisma": "^7.0.1"
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@prisma/client": "^6.18.0",
+    "prisma": "^6.18.0"
   }
 }
