@@ -1,85 +1,84 @@
 // tasks.controller.js
-import { prisma } from "../prismaClient.js";
+import { prisma } from '../prismaClient.js';
 
-// GET: Obtener solo las tareas del usuario autenticado
+// GET: obtener todas las tareas del usuario autenticado
 export const getAllTasks = async (req, res) => {
     try {
-        const tasks = await prisma.task.findMany({
-            where: { userId: req.user.id }
+        const tasks = await prisma.tasks.findMany({
+            where: {
+                userId: req.user.id
+            }
         });
-
         res.json(tasks);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal server error" });
+        res.status(500).json({ error: 'Internal server error' });
     }
 };
 
-// POST: crear tarea asociada al usuario autenticado
+// POST: crear tarea
 export const CreateTasks = async (req, res) => {
     try {
-        const { title, description, status } = req.body;
+        const { title } = req.body;
 
-        const task = await prisma.task.create({
+        const task = await prisma.tasks.create({
             data: {
                 title,
-                description,
-                status: status || "pending",
-                userId: req.user.id // 🔥 AHORA VIENE DEL TOKEN
+                userId: req.user.id   // ← userId desde Passport
             }
         });
 
         res.json(task);
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: "Error creando tarea" });
     }
 };
 
-// PUT: actualizar tarea SOLO si pertenece al usuario autenticado
+// PUT: actualizar tarea del usuario autenticado
 export const updateTasks = async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, description, status } = req.body;
+        const { title } = req.body;
 
-        const task = await prisma.task.updateMany({
-            where: {
-                id: Number(id),
-                userId: req.user.id
-            },
-            data: { title, description, status }
+        // Verificar que la tarea pertenece al usuario
+        const task = await prisma.tasks.findUnique({
+            where: { id: Number(id) },
         });
 
-        if (task.count === 0) {
-            return res.status(404).json({ error: "Tarea no encontrada o no autorizada" });
+        if (!task || task.userId !== req.user.id) {
+            return res.status(403).json({ error: "No autorizado" });
         }
 
-        res.json({ message: "Tarea actualizada" });
+        const updatedTask = await prisma.tasks.update({
+            where: { id: Number(id) },
+            data: { title }
+        });
+
+        res.json(updatedTask);
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: "Error actualizando tarea" });
     }
 };
 
-// DELETE: eliminar solo si la tarea pertenece al usuario autenticado
+// DELETE: eliminar tarea del usuario autenticado
 export const deleteTasks = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const task = await prisma.task.deleteMany({
-            where: {
-                id: Number(id),
-                userId: req.user.id
-            }
+        const task = await prisma.tasks.findUnique({
+            where: { id: Number(id) }
         });
 
-        if (task.count === 0) {
-            return res.status(404).json({ error: "Tarea no encontrada o no autorizada" });
+        if (!task || task.userId !== req.user.id) {
+            return res.status(403).json({ error: "No autorizado" });
         }
+
+        await prisma.tasks.delete({
+            where: { id: Number(id) }
+        });
 
         res.json({ message: "Tarea eliminada" });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: "Error eliminando tarea" });
     }
 };
