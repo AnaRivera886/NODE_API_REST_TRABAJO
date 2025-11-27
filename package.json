@@ -1,34 +1,22 @@
 {
   "name": "node_api_rest_trabajo",
   "version": "1.0.0",
-  "description": "Primer commit",
-  "main": "src/app.js",
-  "type": "module",
+  "description": "",
+  "knex": "^X.Y.Z",
+  "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --watch src/app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AnaRivera886/NODE_API_REST_TRABAJO.git"
+    "migrate": "npx knex migrate:latest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AnaRivera886/NODE_API_REST_TRABAJO/issues"
-  },
-  "homepage": "https://github.com/AnaRivera886/NODE_API_REST_TRABAJO#readme",
-  "dependencies": {
-    "bcryptjs": "^3.0.3",
-    "dotenv": "^17.2.3",
-    "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "passport": "^0.7.0",
-    "passport-jwt": "^4.0.1"
-  },
   "devDependencies": {
-    "@prisma/client": "^6.18.0",
-    "prisma": "^6.18.0"
+    "knex": "^3.1.0"
+  },
+  "dependencies": {
+    "pg": "^8.16.3"
   }
 }
