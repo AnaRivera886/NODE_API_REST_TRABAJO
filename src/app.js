@@ -1,14 +1,14 @@
 import express from "express";
-import dotenv from "dotenv";
-
-dotenv.config();
+import tasksRoutes from "./routes/tasks.js";
+import authRoutes from "./routes/auth.js";
+import passport from "./config/passport.js";
 
 const app = express();
+
 app.use(express.json());
+app.use(passport.initialize());
 
-app.get("/", (req, res) => {
-    res.send("API running");
-});
+app.use("/tasks", tasksRoutes);
+app.use("/auth", authRoutes);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(3000, () => console.log("Servidor corriendo en http://localhost:3000"));
