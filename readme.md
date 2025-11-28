@@ -95,7 +95,7 @@ Ubicación:
 Archivo:
     src/config/passport.js
 
-    Hace:
+    Que Hace:
 
         -Definir la estrategia JWT.
 
