@@ -1,22 +1,26 @@
 {
   "name": "node_api_rest_trabajo",
   "version": "1.0.0",
-  "description": "",
-  "knex": "^X.Y.Z",
-  "main": "index.js",
+  "description": "API REST con Node.js, Express, Prisma, JWT y Passport",
+  "main": "src/app.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "npx knex migrate:latest"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "knex": "^3.1.0"
+    "start": "node --watch src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "dependencies": {
-    "pg": "^8.16.3"
+    "@prisma/client": "^6.2.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "prisma": "^6.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }
